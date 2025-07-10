@@ -1,5 +1,6 @@
 import pygame
 import sys
+import time
 
 # Initialize Pygame
 pygame.init()
@@ -265,10 +266,21 @@ def radix_sort_visual(arr, animation_speed=100):
         return sorted_arr
 
     # Run the positive number radix sort visualization
+    start_time = time.time()
     sorted_arr = radix_sort_positive(arr)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
     window.fill(BACKGROUND_COLOR)
     # Final display of sorted array
     draw_input_array(sorted_arr, heading="Sorted Array")
+
+    # Display time complexity and elapsed time
+    time_complexity_text = "Time Complexity: O(d*(n+b))"
+    elapsed_time_text = f"Elapsed Time: {elapsed_time:.4f} seconds"
+    display_text(time_complexity_text, 50, 200, color=HIGHLIGHT_COLOR, font_obj=small_font)
+    display_text(elapsed_time_text, 50, 230, color=HIGHLIGHT_COLOR, font_obj=small_font)
+
     pygame.display.update()
     wait_for_key([pygame.K_RETURN])
 
